@@ -3,11 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.list_notes = exports.save_note = void 0;
+exports.list_notes = exports.save_note = exports.landingpage = void 0;
 
 var _db = _interopRequireDefault(require("../utils/db"));
 
+var _path = _interopRequireDefault(require("path"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var landingpage = function landingpage(req, res) {
+  res.sendFile(_path.default.join(__dirname + '/../../index.html'));
+};
+
+exports.landingpage = landingpage;
 
 var save_note = function save_note(req, res) {
   var usernote = {
