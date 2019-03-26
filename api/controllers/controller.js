@@ -1,10 +1,10 @@
 import pool from '../utils/db';
-import path from 'path';
+// import path from 'path';
 
 
-export const landingpage = (req, res) => {
-    res.sendFile(path.join(__dirname + '/../../index.html'));
-};
+// export const landingpage = (req, res) => {
+//     res.sendFile(path.join(__dirname + '/../../index.html'));
+// };
 
 export const save_note = (req, res) => {
    const  usernote = {

@@ -6,10 +6,11 @@
     <title>Psirius Editor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/main.css" />
 
 </head>
 <body onload="enableEditMode();">
+    <div class= "titlediv" contenteditable="true"><h3 id= "title">NOTE TITLE</h3></div>
     <div >
         <!--the execmd method takes in arg as command which performs operations on the documents in the iframe area-->
         <button onclick="execCmd('bold')"><i class="fas fa-bold"></i></button>
@@ -73,10 +74,12 @@
         Background: <input type="color" onchange="execCommandWithArg('hiliteColor', this.value)"/>
         <button onclick="execCommandWithArg('insertImage', prompt('Enter Image Url', 'https://'))"><i class="fas fa-file-image"></i></button>
         <button onclick="execCmd('selectAll')">Select All</button>
+        <button onclick="saveNote()"><i class ="fas fa-save"></i></button>
     </div>
 <!--here we create our editable text area-->
-    <iframe name="richTextField" style="width : 100%; height:500px;"></iframe>
+    <iframe name="richTextField" id="iframe" style="width : 100%; height:500px;"></iframe>
 
-    <script src="app.js"></script>
+    <script src="/public/app.js"></script>
+    <script src="/public/fetch.js"></script>
 </body>
 </html>
