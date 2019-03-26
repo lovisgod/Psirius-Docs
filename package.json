@@ -4,7 +4,7 @@
   "description": "",
   "main": "api.js",
   "scripts": {
-    "build": "babel app -d dist",
+    "build": "babel api -d dist",
     "start": "npm run build && node dist/api.js",
     "dev": "npm run build && nodemon dist/api.js",
     "test": "echo \"Error: no test specified\" && exit 1"
