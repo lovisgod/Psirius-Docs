@@ -5,12 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Psirius Editor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="/public/main.css" />
 
 </head>
 <body onload="enableEditMode();">
+    <div class="top">
+     <button onclick="getNotes()" id="topButton" class="getNotes">My Notes</button>
+     <button onclick="signIn()" id="topButton" class="signIn">Sign In</button>
     <div class= "titlediv" contenteditable="true"><h3 id= "title">NOTE TITLE</h3></div>
+    </div>
     <div >
         <!--the execmd method takes in arg as command which performs operations on the documents in the iframe area-->
         <button onclick="execCmd('bold')"><i class="fas fa-bold"></i></button>
@@ -76,8 +81,35 @@
         <button onclick="execCmd('selectAll')">Select All</button>
         <button onclick="saveNote()"><i class ="fas fa-save"></i></button>
     </div>
+
+      <!-- The Modal that shows as dialog -->
+<div id="listModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>My Notes</h2>
+          </div>
+          <div  class="card card-body mt-4 md-4" id="modal-body"></div>
+
+        </div>
+      
+</div>
 <!--here we create our editable text area-->
     <iframe name="richTextField" id="iframe" style="width : 100%; height:500px;"></iframe>
+
+    <!-- The Modal that shows as dialog -->
+<div id="listModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>My Notes</h2>
+          </div>
+          <div id="modal-body"></div>
+
+        </div>
+</div>      
 
     <script src="/public/app.js"></script>
     <script src="/public/fetch.js"></script>

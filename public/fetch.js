@@ -25,3 +25,73 @@ const postNote = () => {
     .catch((err) => console.log(err));
 
 };
+
+
+// Get the modal
+const modal = document.getElementById('listModal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+// When the user clicks the button, open the modal 
+const getNotes = () => {
+  modal.style.display = "block";
+  fetch('http://127.0.0.1:7000/api/v1/list_notes/ayo455')
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    //here we create a variable called output and set it to equal an h2
+    let output = '<h2>Note List</h2>';
+    //here we loop through the data from the response and set params user as identifier
+    data.notes.forEach(note => {
+      //then we append the data to the output also the ${} sign is used for appending when
+      //using backtick for string concat
+      output += `
+       <div>
+       <h3 class="card card-title" id="${note.note_id}">${note.title}</h3>
+       </div>
+      `
+    });
+    document.getElementById('modal-body').innerHTML = output;
+    });
+};
+
+const getFullNote = (e) => {
+  //the e.targer get the current item we are clicking on.
+  let id = e.target.id;
+  
+    console.log("My ID: "+id);
+    fetch('http://127.0.0.1:7000/api/v1/list_notes/ayo455')
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    //here we loop through the data from the response and set params user as identifier
+    data.notes.forEach(note => {
+        if (note.note_id == id){
+          richTextField.document.getElementsByTagName('body')[0].innerHTML = note.content;
+            document.getElementById('title').innerHTML = note.title;
+            modal.style.display = "none";
+        }else {
+          //do nothing
+        }
+    });
+   
+    })
+    .catch((err) => console.log(err));
+
+
+};
+ 
+const noteObject = document.getElementsByClassName('card');
+for (var i = 0 ; i < noteObject.length; i++) {
+  noteObject[i].addEventListener('click', getFullNote);
+} 
+
+
+ 
+
+
