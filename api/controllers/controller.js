@@ -1,11 +1,4 @@
 import pool from '../utils/db';
-// import path from 'path';
-
-
-// export const landingpage = (req, res) => {
-//     res.sendFile(path.join(__dirname + '/../../index.html'));
-// };
-
 export const save_note = (req, res) => {
    const  usernote = {
         username : req.body.username,
@@ -34,6 +27,24 @@ export const list_notes = (req, res) => {
         }
         else {
             res.status(200).send({notes: result.rows});
+        }
+    });
+};
+
+export const update_note = (req, res) => {
+    const  usernote = {
+        id: req.body.id,
+        username : req.body.username,
+        content : req.body.content,
+    };
+    pool.query('UPDATE "usernote" SET "content" =$1  WHERE note_id = $2 AND username = $3',
+    [usernote.content, usernote.id, usernote.username], (err, result) =>{
+        if(err){
+            console.log(err.message);
+            return res.status(404).send(err.message);
+        }
+        else {
+            res.status(200).send({notes: usernote});
         }
     });
 };

@@ -1,3 +1,5 @@
+let my_note_id = '0';
+
 const saveNote = () => {
     postNote();
 };
@@ -11,7 +13,7 @@ const postNote = () => {
      let username = 'ayo455';
      console.log(title);
      console.log(content);
-
+     if (my_note_id == '0') {
      fetch('http://localhost:7000/api/v1/save_note', {
       method : 'POST',
       headers: {
@@ -23,6 +25,20 @@ const postNote = () => {
     .then((res) => res.json())
     .then((data) => console.log(data))
     .catch((err) => console.log(err));
+
+  } else {
+    fetch ('http://localhost:7000/api/v1/update_note', {
+      method : 'PUT',
+      headers: {
+        'Accept' : 'application/json, text/plain, */*',
+        'Content-type':'application/json'
+      },
+      body:JSON.stringify({content:content,id:my_note_id,username:username})
+    })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
+  }
 
 };
 
@@ -75,6 +91,7 @@ const getFullNote = (e) => {
           richTextField.document.getElementsByTagName('body')[0].innerHTML = note.content;
             document.getElementById('title').innerHTML = note.title;
             modal.style.display = "none";
+            my_note_id = id;
         }else {
           //do nothing
         }
@@ -90,8 +107,3 @@ const noteObject = document.getElementsByClassName('card');
 for (var i = 0 ; i < noteObject.length; i++) {
   noteObject[i].addEventListener('click', getFullNote);
 } 
-
-
- 
-
-

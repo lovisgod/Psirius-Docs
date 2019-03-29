@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.list_notes = exports.save_note = void 0;
+exports.update_note = exports.list_notes = exports.save_note = void 0;
 
 var _db = _interopRequireDefault(require("../utils/db"));
 
@@ -48,3 +48,24 @@ var list_notes = function list_notes(req, res) {
 };
 
 exports.list_notes = list_notes;
+
+var update_note = function update_note(req, res) {
+  var usernote = {
+    id: req.body.id,
+    username: req.body.username,
+    content: req.body.content
+  };
+
+  _db.default.query('UPDATE "usernote" SET "content" =$1  WHERE note_id = $2 AND username = $3', [usernote.content, usernote.id, usernote.username], function (err, result) {
+    if (err) {
+      console.log(err.message);
+      return res.status(404).send(err.message);
+    } else {
+      res.status(200).send({
+        notes: usernote
+      });
+    }
+  });
+};
+
+exports.update_note = update_note;
