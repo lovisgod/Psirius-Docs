@@ -13,7 +13,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var router = _express.default.Router();
+const router = _express.default.Router();
 
 router.post('/save_note', controller.save_note); //this route adds params to the url
 

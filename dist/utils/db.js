@@ -5,13 +5,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _require = require('pg'),
-    Pool = _require.Pool;
+const {
+  Pool
+} = require('pg');
 
-var dotenv = require('dotenv');
+const dotenv = require('dotenv');
 
 dotenv.config();
-var pool = new Pool({
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 var _default = pool;

@@ -9,14 +9,14 @@ var _db = _interopRequireDefault(require("../utils/db"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var save_note = function save_note(req, res) {
-  var usernote = {
+const save_note = (req, res) => {
+  const usernote = {
     username: req.body.username,
     title: req.body.title,
     content: req.body.content
   };
 
-  _db.default.query("INSERT INTO \"usernote\"(\"username\", \"title\",\"content\")VALUES($1,$2,$3)", [usernote.username, usernote.title, usernote.content], function (err, result) {
+  _db.default.query(`INSERT INTO "usernote"("username", "title","content")VALUES($1,$2,$3)`, [usernote.username, usernote.title, usernote.content], (err, result) => {
     if (err) {
       console.log(err);
       return res.status(404).send(err.message);
@@ -28,10 +28,12 @@ var save_note = function save_note(req, res) {
 
 exports.save_note = save_note;
 
-var list_notes = function list_notes(req, res) {
-  var username = req.params.username;
+const list_notes = (req, res) => {
+  const {
+    username
+  } = req.params;
 
-  _db.default.query('SELECT * FROM "usernote" WHERE username = $1', [username], function (err, result) {
+  _db.default.query('SELECT * FROM "usernote" WHERE username = $1', [username], (err, result) => {
     if (err) {
       console.log(err.message);
       return res.status(404).send(err.message);
