@@ -22,7 +22,7 @@ const postNote = () => {
       },
       body: JSON.stringify({username:username, title: title, content:content})
     })
-    .then((res) => res.json())
+    .then((res) => console.log(res))
     .then((data) => console.log(data))
     .catch((err) => console.log(err));
 
